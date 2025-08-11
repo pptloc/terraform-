@@ -25,8 +25,8 @@ jobs:
         id: vars
         run: |
           BRANCH=${GITHUB_REF#refs/heads/}
-          if [ "$BRANCH" = "main" ]; then echo "TFVARS=envs/prod.tfvars" >> $GITHUB_ENV; fi
-          if [ "$BRANCH" = "develop" ]; then echo "TFVARS=envs/dev.tfvars" >> $GITHUB_ENV; fi
+          if [ "$BRANCH" = "main" ]; then echo "TFVARS=terraform-azure-vm/envs/prod.tfvars" >> $GITHUB_ENV; fi
+          if [ "$BRANCH" = "develop" ]; then echo "TFVARS=terraform-azure-vm/envs/dev.tfvars" >> $GITHUB_ENV; fi
       - name: Terraform Plan
         run: terraform plan -var-file="$TFVARS" -out=tfplan
       - name: Upload Plan

@@ -44,6 +44,7 @@ data "template_file" "cloud_init" {
   vars = {
     docker_image = var.docker_image
     environment  = var.environment
+    admin_username = var.admin_username
   }
 }
 

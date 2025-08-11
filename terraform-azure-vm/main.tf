@@ -1,5 +1,5 @@
 module "vm" {
-  source = "./modules/vm"
+  source = "./terraform-azure-vm/modules/vm"
 
   resource_group_name = var.resource_group_name
   location            = var.location

@@ -20,8 +20,8 @@ jobs:
 
       - name: Restore & Build
         run: |
-          dotnet restore ./aspnet/aspnetapp.sln
-          dotnet publish ./aspnet/aspnetapp.sln -c Release -o out
+          dotnet restore ./aspnet/aspnetapp/aspnetapp.sln
+          dotnet publish ./aspnet/aspnetapp/aspnetapp.sln -c Release -o out
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

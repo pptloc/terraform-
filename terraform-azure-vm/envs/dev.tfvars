@@ -1,5 +1,5 @@
-resource_group_name = "rg-dev-placeholder"
-location            = "East US"
+resource_group_name = "rg-dev"
+location            = "East Asia"
 prefix              = "myapp"
 vm_name             = "dev-vm"
 admin_username      = "azureuser"

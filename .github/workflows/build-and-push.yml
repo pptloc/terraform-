@@ -58,11 +58,17 @@ jobs:
     needs: fmt-validate-plan
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup SSH public key
+        run: echo "${{ secrets.SSH_PUBLIC_KEY }}" > terraform-azure-vm/id_rsa.pub      
       
       - name: Download Plan
         uses: actions/download-artifact@v4
         with:
           name: tfplan
+
+      - name: Move tfplan to working dir
+        run: mv tfplan terraform-azure-vm/tfplan
       
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2

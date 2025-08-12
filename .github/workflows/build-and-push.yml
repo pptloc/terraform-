@@ -74,6 +74,15 @@ jobs:
 
       - name: Move tfplan to working dir
         run: mv tfplan terraform-azure-vm/tfplan
+
+      - name: Download Docker image tag artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-image-tag
+
+      - name: Read docker image tag
+        id: read-image-tag
+        run: echo "IMAGE_TAG=$(cat image-tag.txt)" >> $GITHUB_ENV          
       
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -86,5 +95,5 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
         run: |
           terraform init
-          terraform apply -auto-approve tfplan
+          terraform apply -auto-approve -var "docker_image=${{ env.IMAGE_TAG }}" tfplan
         working-directory: terraform-azure-vm

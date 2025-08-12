@@ -18,9 +18,11 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
+        working-directory: terraform-azure-vm
         run: terraform init
 
       - name: Terraform Destroy
+        working-directory: terraform-azure-vm
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}

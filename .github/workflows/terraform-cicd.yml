@@ -41,3 +41,12 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/your-app:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/your-app:${{ github.sha }}
+ 
+      - name: Save image tag to file
+        run: echo "${{ secrets.DOCKERHUB_USERNAME }}/your-app:${{ github.sha }}" > image-tag.txt
+
+      - name: Upload image tag artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image-tag
+          path: image-tag.txt
